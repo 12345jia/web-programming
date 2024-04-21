@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="signup_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="form_container">
+        <div class="s">
+            <h2>Sign Up Form</h2>
+        </div>
+        <div class="input_group">
+            <label for="fname">First Name</label><br>
+            <input type="text" id="fname" name="fname" required>
+            <div class="error1"></div>
+        </div>
+        <div class="input_group">
+            <label for="lname">Last Name</label><br>
+            <input type="text" id="lname" name="lname" required>
+            <div class="error2"></div>
+        </div>
+        <div class="input_group">
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" required>
+            <div class="error3"></div>
+        </div>
+        <div class="input_group">
+            <label for="username">Username</label><br>
+            <input type="text" id="username" name="username" required>
+            <div class="error4"></div>
+        </div>
+        <div class="input_group">
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password" required>
+            <div class="error5"></div>
+        </div>
+        <div class="input_group">
+            <label for="confirm_pass">Confirm Password</label><br>
+            <input type="password" id="confirm_pass" name="confirm_pass" required>
+            <div class="error6"></div>
+        </div>
+        <div class="input_group">
+            <label for="phone">Phone Number</label><br>
+            <input type="tell" id="phone" name="phone" required>
+            <div class="error7"></div>
+        </div>
+        <div class="input_group">
+            <label for="gender">Gender</label><br>
+            <select id="gender" name="gender" required>
+                <option>Select ----</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+            <div class="error8"></div>
+        </div>
+        <div class="input_group">
+            <button type="button" class="createbutton">Create Account</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#fname").on('input', function () {
+                if ($(this).val() != '') {
+                    $('.error1').text('');
+                }
+            });
+
+            $("#lname").on('input', function () {
+                if ($(this).val() != '') {
+                    $('.error2').text('');
+                }
+            });
+
+
+            $("#email").on('input', function () {
+                if ($(this).val() != '') {
+                    $('.error3').text('');
+                }
+            });
+
+
+            $("#username").on('input', function () {
+                if ($(this).val() != '') {
+                    $('.error4').text('');
+                }
+            });
+
+            $("#password").on('input', function () {
+                if ($(this).val() != '') {
+                    $('.error5').text('');
+                }
+            });
+
+            $("#confirm_pass").on('input', function () {
+                if ($(this).val() != '') {
+                    $('.error6').text('');
+                }
+            });
+            $("#phone").on('input', function () {
+                if ($(this).val() != '') {
+                    $('.error7').text('');
+                }
+            });
+
+            $("#gender").on('change', function () {
+                if ($(this).val() != 'Select ----') {
+                    $('.error8').text('');
+                }
+            });
+            $(".createbutton").click(function () {
+                var fname = $("#fname").val();
+                var lname = $("#lname").val();
+                var email = $('#email').val();
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var confirm_pass = $('#confirm_pass').val();
+                var phone = $('#phone').val();
+                var gender = $('#gender').val();
+
+                var validation = true
+
+                if (fname == '') {
+                    $('.error1').text("*First Name Required");
+                    validation = false
+                }
+
+                if (lname == '') {
+                    $('.error2').text("*Last Name Required");
+                    validation = false
+                }
+
+                
+                var emailregex = /^[^\s@]+@gmail\.com$/;
+                if (!emailregex.test(email)) {
+                    $('.error3').text('');
+                    $('.error3').text("*Invalid Email");
+                    validation = false;
+                }
+
+                if (username == '') {
+                    $('.error4').text("*Username Required");
+                    validation = false
+                }
+                
+                var passwordregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                if (!passwordregex.test(password)) {
+                    $('.error5').text("*Invalid Password");
+                    validation = false
+                }
+
+
+                if (confirm_pass == '') {
+                    $('.error6').text("*Field  Required");
+                    validation = false
+                }
+                if (password !== confirm_pass) {
+                    $('.error6').text("*Invalid confirm password");
+                    validation = false
+                }
+
+                var phoneregex = /^\d{10}$/;
+                if (!phoneregex.test(phone)) {
+                    $('.error7').text("*Invalid Phonenumber");
+                    validation = false
+                }
+
+                if (gender == 'Select ----') {
+                    $('.error8').text("*Invalid choice");
+                    validation = false
+                }
+
+
+            });
+        });
+    </script>
+</body>
+
+</html>
